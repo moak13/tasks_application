@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/core.dart';
+import 'features/features.dart';
 import 'generated/l10n.dart';
 
 void main() {
@@ -44,7 +45,7 @@ class MyApp extends ConsumerWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: locale,
-      home: const MyHomePage(),
+      home: const WrapperView(),
     );
   }
 }
