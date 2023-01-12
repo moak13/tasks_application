@@ -1,0 +1,14 @@
+{
+    "@@locale": "en",
+    "task": "Task",
+    "tasks": "Tasks",
+    "projects": "Projects",
+    "teams": "Teams",
+    "simple_description": "This is just a simple task description",
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "four": "4",
+    "five": "5",
+    "six": "6"
+}
