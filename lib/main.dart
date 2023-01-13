@@ -1,6 +1,8 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tasks_application/main_router.dart';
 
 import 'core/core.dart';
 import 'features/features.dart';
@@ -23,7 +25,9 @@ class MyApp extends ConsumerWidget {
     // Watch the current locale and rebuild on change
     Locale locale = ref.watch(localeStateProvider);
 
-    return MaterialApp(
+    final routeDelegate = ref.watch(mainRouterDelegateProvider);
+
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -45,7 +49,11 @@ class MyApp extends ConsumerWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: locale,
-      home: const WrapperView(),
+      routerDelegate: routeDelegate,
+      routeInformationParser: BeamerParser(),
+      backButtonDispatcher: BeamerBackButtonDispatcher(
+        delegate: routeDelegate,
+      ),
     );
   }
 }
