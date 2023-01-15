@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/core.dart';
+
 class TaskDesktopNormalView extends StatelessWidget {
-  const TaskDesktopNormalView({super.key});
+  final Task? task;
+
+  const TaskDesktopNormalView({super.key, this.task});
 
   @override
   Widget build(BuildContext context) {

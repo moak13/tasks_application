@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/core.dart';
+
 class TaskTabletNormalView extends StatelessWidget {
-  const TaskTabletNormalView({super.key});
+  final Task? task;
+  const TaskTabletNormalView({super.key, this.task});
 
   @override
   Widget build(BuildContext context) {

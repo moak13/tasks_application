@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/core.dart';
+
 class TaskDesktopExtraLargeView extends StatelessWidget {
-  const TaskDesktopExtraLargeView({super.key});
+  final Task? task;
+
+  const TaskDesktopExtraLargeView({super.key, this.task});
 
   @override
   Widget build(BuildContext context) {
