@@ -2,11 +2,10 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tasks_application/main_router.dart';
 
 import 'core/core.dart';
-import 'features/features.dart';
 import 'generated/l10n.dart';
+import 'main_router.dart';
 
 void main() {
   runApp(
@@ -53,45 +52,6 @@ class MyApp extends ConsumerWidget {
       routeInformationParser: BeamerParser(),
       backButtonDispatcher: BeamerBackButtonDispatcher(
         delegate: routeDelegate,
-      ),
-    );
-  }
-}
-
-class MyHomePage extends ConsumerStatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  ConsumerState<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends ConsumerState<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    // Get locale state
-    LocaleState localeState = ref.read(localeStateProvider.notifier);
-    // Get supported locales
-    List<Locale> supportedLocales = localeState.supportedLocales;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(S.of(context).task),
-      ),
-      body: ListView.separated(
-        itemCount: supportedLocales.length,
-        separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(
-            height: 10,
-          );
-        },
-        itemBuilder: (BuildContext context, int index) {
-          Locale locale = supportedLocales.elementAt(index);
-          return ListTile(
-            title: Text(locale.languageCode),
-            onTap: () async {
-              await localeState.setLocale(locale);
-            },
-          );
-        },
       ),
     );
   }
