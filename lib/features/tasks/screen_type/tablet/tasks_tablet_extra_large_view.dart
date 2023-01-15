@@ -5,7 +5,7 @@ import 'package:jiffy/jiffy.dart';
 
 import '../../../../core/core.dart';
 import '../../../../generated/l10n.dart';
-import '../../location/location.dart';
+import '../../delegate/delegate.dart';
 
 class TasksTabletExtraLargeView extends ConsumerStatefulWidget {
   const TasksTabletExtraLargeView({super.key});
@@ -22,6 +22,10 @@ class _TasksTabletExtraLargeViewState
     SizeMg.init(context);
     // Get the async value
     AsyncValue<List<Task>?> networkData = ref.watch(networkServiceProvider);
+    BeamerDelegate taskDelegate = ref.watch(taskRouterDelegatesProvider);
+    // Get Task State
+    TaskState taskState = ref.read(taskStateProvider.notifier);
+
     return Scaffold(
       body: Row(
         children: [
@@ -93,7 +97,9 @@ class _TasksTabletExtraLargeViewState
                                 fontWeight: FontWeight.w200,
                               ),
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              taskState.setTask(task);
+                            },
                           );
                         },
                       ),
@@ -132,15 +138,7 @@ class _TasksTabletExtraLargeViewState
             return Expanded(
               child: Beamer(
                 key: GlobalKey<BeamerState>(),
-                routerDelegate: BeamerDelegate(
-                  initialPath: '/tasks/:taskId',
-                  locationBuilder: (routeInformation, _) {
-                    if (routeInformation.location!.contains('task')) {
-                      return TaskLocation(routeInformation);
-                    }
-                    return NotFound(path: routeInformation.location!);
-                  },
-                ),
+                routerDelegate: taskDelegate,
               ),
             );
           }),
